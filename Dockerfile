@@ -1,12 +1,12 @@
 FROM debian:latest
 
 RUN apt-get update
-RUN apt-get -y install curl wget python3-pip ltrace strace vim git cmake gdb python-pip python-dev libssl-dev libffi-dev tmux
+RUN apt-get -y install curl wget python3-pip ltrace strace vim git cmake gdb python-pip python-dev libssl-dev libffi-dev tmux python3-dev build-essential
 
 RUN pip install --upgrade pip
 RUN pip3 install --upgrade pip
 
-RUN pip install --upgrade pwntools
+RUN python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev3
 
 RUN cd /var/tmp && git clone https://github.com/keystone-engine/keystone.git && cd keystone && mkdir build && cd build && ../make-share.sh && make install && ldconfig && cd ../bindings/python && python3 setup.py install
 
