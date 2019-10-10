@@ -8,7 +8,7 @@ RUN pip3 install --upgrade pip
 
 RUN pip install --upgrade pwntools
 
-RUN cd /var/tmp && git clone https://github.com/keystone-engine/keystone.git && cd keystone && mkdir build && cd build && ../make-share.sh && make install && cd ../bindings/python && python3 setup.py install
+RUN cd /var/tmp && git clone https://github.com/keystone-engine/keystone.git && cd keystone && mkdir build && cd build && ../make-share.sh && make install && ldconfig && cd ../bindings/python && python3 setup.py install
 
 RUN pip3 install virtualenv
 RUN pip3 install unicorn ropper capstone
