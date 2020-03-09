@@ -1,7 +1,7 @@
 FROM debian:latest
 
 RUN apt-get update
-RUN apt-get -y install curl wget python3-pip ltrace strace vim git cmake gdb python-pip python-dev libssl-dev libffi-dev tmux python3-dev build-essential
+RUN apt-get -y install curl wget python3-pip ltrace strace vim git cmake gdb python-pip python-dev libssl-dev libffi-dev tmux python3-dev build-essential unzip ruby gdbserver netcat
 
 RUN pip install --upgrade pip
 RUN pip3 install --upgrade pip
@@ -17,6 +17,10 @@ RUN pip3 install cryptography
 RUN wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
 RUN cd $HOME && git clone https://github.com/liona24/utility-scripts.git && echo "export PATH=\"$PATH:$HOME/utility-scripts\"" >> $HOME/.bashrc
+
+RUN gem install one_gadget
+
+ENV LC_CTYPE C.UTF-8
 
 RUN mkdir $HOME/share/
 VOLUME ["$HOME/share"]
